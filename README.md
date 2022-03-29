@@ -9,4 +9,4 @@ Lots of training and retraining, tweaking parameters, testing basic stuff - most
 
 End result of the day:
 
-![firstCNN]("./firstDecentCNN.png" First Decent CNN) 
+![firstCNN](/firstDecentCNN.png "First Decent CNN") 
