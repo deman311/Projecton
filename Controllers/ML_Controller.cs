@@ -23,8 +23,8 @@ namespace aspnetcore.Controllers
         public ActionResult Score()
         {
             // load a test image
-            /*var image = Image.Load<Rgb24>("./jim.jpg");*/
-            var image = Image.Load<Rgb24>("./catos.jpg");
+            var image = Image.Load<Rgb24>("./jim.jpg");
+            //var image = Image.Load<Rgb24>("./catos.jpg");
             image = image.Clone(ctx =>
             {
                 ctx.Resize(new ResizeOptions
@@ -52,14 +52,16 @@ namespace aspnetcore.Controllers
                 NamedOnnxValue.CreateFromTensor("IN", input)
             });
 
+            // check if output is valid - as expected
             if (result.FirstOrDefault()?.Value is not Tensor<float> output)
                 throw new ApplicationException("Unable to process image");
-
+            
+            // convert into probabilities and decode to label
             float[] probs = result.First().AsTensor<float>().ToArray();
             var prediction = new Prediction { PredictedLabel = GetLabel(ARG_Softmax(probs)) };
 
-            result.Dispose();
-            return Ok(prediction);
+            result.Dispose(); // free resources
+            return Ok(prediction); // return marshalled prediction
         }
 
         // decode label
