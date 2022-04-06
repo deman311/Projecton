@@ -4,27 +4,28 @@ using Microsoft.ML.OnnxRuntime.Tensors;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using Amazon.MachineLearning.Model;
 
-namespace aspnetcore.Controllers
+/**
+ * OLD CODE -> used this to learn about .NETcore API
+ */
+
+namespace Controllers
 {
     [ApiController]
     [Route("/catordog")]
     public class InferenceController : ControllerBase
     {
         private InferenceSession _session;
-
-        public InferenceController(InferenceSession session)
-        {
+        public InferenceController(InferenceSession session) {
             _session = session;
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Score()
         {
             // load a test image
-            var image = Image.Load<Rgb24>("./jim.jpg");
-            //var image = Image.Load<Rgb24>("./catos.jpg");
+            //var image = Image.Load<Rgb24>("./misha.jpeg");
+            var image = Image.Load<Rgb24>("./catos.jpg");
             image = image.Clone(ctx =>
             {
                 ctx.Resize(new ResizeOptions
@@ -58,10 +59,13 @@ namespace aspnetcore.Controllers
             
             // convert into probabilities and decode to label
             float[] probs = result.First().AsTensor<float>().ToArray();
-            var prediction = new Prediction { PredictedLabel = GetLabel(ARG_Softmax(probs)) };
+            var prediction = GetLabel(ARG_Softmax(probs));
 
             result.Dispose(); // free resources
-            return Ok(prediction); // return marshalled prediction
+/*
+            using var ms = new MemoryStream();
+            image.SaveAsJpeg(ms);*/
+            return Ok(prediction); // return the string with 200 OK
         }
 
         // decode label
