@@ -1,7 +1,7 @@
 # Projecton
 Job Interview Project
 
-### Day 🥇 29/03/22
+### Day 1️⃣ 29/03/22
 So the things I did today were to read about ONNX, search for suitable datasets for my model, read some CNN notebooks to refresh my memory about CNN's,
 then I took inspiration from dog-cat Kaggle competition notebooks and finally started writing the model.
 
@@ -11,7 +11,7 @@ End result of the day:
 
 ![firstCNN](/firstDecentCNN.png "First Decent CNN") 
 
-### Day 2️ 30/03/22
+### Day 2️⃣ 30/03/22
 So today I played even further with the parameters, after also training the model on the validation set I've managed
 to reach an accuracy of about 85% (worst case). Also, after going through a couple of test sets I'd say it is also pretty close to that score on the test.
 
@@ -21,4 +21,7 @@ Finally, I manged to set up a functioning API that loads an image from the local
 
 I think I'll take another day to tidy up some bits (like the Colab notebook - that needs some more annotation), and also I want to read about a some methods and syntaxs that are new to me as I didn't get the chance to work on API's that much.
 
-P.S. The dog is my girlfriend's.
+### Day 3️⃣ 06/04/22
+- please read the commit description -
+
+CNN Model test accuracy is at about 0.9
